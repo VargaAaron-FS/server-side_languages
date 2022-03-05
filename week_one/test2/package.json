@@ -4,7 +4,7 @@
   "description": "NodeJS Test app",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "start": "nodemon server"
   },
   "keywords": [
@@ -19,6 +19,7 @@
     "express": "^4.17.3"
   },
   "devDependencies": {
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   }
 }
