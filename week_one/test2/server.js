@@ -1,10 +1,50 @@
 const express = require("express");
 require("dotenv").config();
+
 const app = express();
 
 app.get("/", (req, res, next) => {
   res.json({
-    message: "Did you GET IT?",
+    message: "Using GET /",
+    metadata: {
+      host: req.hostname,
+      port: process.env.port,
+      method: req.method,
+    },
+  });
+});
+
+// post, patch, delete
+app.post("/", (req, res, next) => {
+  res.json({
+    message: "Using POST /",
+    metadata: {
+      host: req.hostname,
+      port: process.env.port,
+      method: req.method,
+    },
+  });
+});
+
+app.patch("/", (req, res, next) => {
+  res.json({
+    message: "Using PATCH /",
+    metadata: {
+      host: req.hostname,
+      port: process.env.port,
+      method: req.method,
+    },
+  });
+});
+
+app.delete("/", (req, res, next) => {
+  res.json({
+    message: "Using DELETE /",
+    metadata: {
+      host: req.hostname,
+      port: process.env.port,
+      method: req.method,
+    },
   });
 });
 
@@ -17,13 +57,12 @@ app.use((req, res, next) => {
 
 // middleware to send error nicely
 app.use((error, req, res, next) => {
-  res
-    .status(error.status || 500)
-    .json({ error: {
+  res.status(error.status || 500).json({
+    error: {
       message: error.message,
       status: error.status,
-      method: req.method
-    }
+      method: req.method,
+    },
   });
 });
 
