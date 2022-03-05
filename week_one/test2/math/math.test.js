@@ -1,8 +1,11 @@
-const { sum, diff, div, mult } = require("./math");
+const { sum, diff, div, mult, sqR, max } = require("./math");
 
 // Testing Math Object
 
 // Add, subtract, divide, multiply (do not need to use math object)
+
+// Advanced Math (use math object)
+// Square root, max
 
 describe("Testing the math module", () => {
   // add
@@ -16,17 +19,22 @@ describe("Testing the math module", () => {
   });
 
   // divide
-  test("Should subtract the numbers to get the difference", () => {
+  test("Should divide the numbers together", () => {
     expect(div(2,1)).toBe(2);
   });
 
   // multiply
-  test("Should subtract the numbers to get the difference", () => {
+  test("Should multiply the numbers together", () => {
     expect(mult(2,1)).toBe(2);
   });
+
+  // square root
+  test("Should find the square root of the number", () => {
+    expect(sqR(4)).toBe(2);
+  });
+
+  // max
+  test("Should find the highest number of the numbers given", () => {
+    expect(max(1,5,10)).toBe(10);
+  });
 });
-
-// Advanced Math (use math object)
-// square root, max
-
-// Start here
