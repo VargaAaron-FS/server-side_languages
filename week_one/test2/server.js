@@ -14,6 +14,18 @@ app.get("/", (req, res, next) => {
   });
 });
 
+app.get("/:id", (req, res, next) => {
+  res.json({
+    message: "Using GET by /:id",
+    metadata: {
+      host: req.hostname,
+      port: process.env.port,
+      method: req.method,
+      id: req.params.id,
+    },
+  });
+});
+
 // post, patch, delete
 app.post("/", (req, res, next) => {
   res.json({
@@ -26,24 +38,26 @@ app.post("/", (req, res, next) => {
   });
 });
 
-app.patch("/", (req, res, next) => {
+app.patch("/:id", (req, res, next) => {
   res.json({
-    message: "Using PATCH /",
+    message: "Using PATCH by /:id",
     metadata: {
       host: req.hostname,
       port: process.env.port,
       method: req.method,
+      id: req.params.id,
     },
   });
 });
 
-app.delete("/", (req, res, next) => {
+app.delete("/:id", (req, res, next) => {
   res.json({
-    message: "Using DELETE /",
+    message: "Using DELETE by /:id",
     metadata: {
       host: req.hostname,
       port: process.env.port,
       method: req.method,
+      id: req.params.id,
     },
   });
 });
