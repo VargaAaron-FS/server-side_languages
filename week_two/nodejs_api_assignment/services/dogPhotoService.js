@@ -27,18 +27,8 @@ const dogPhotoServiceByBreedByQuantity = (breedType, imgQuantity) => {
     });
 };
 
-const dogPhotoServiceByBreedAll = (breedType) => {
-  console.log("List of dogs by breed type by image quantity requested");
-  return axios
-    .get(`${process.env.randomDogPhotoByBreedURL}${breedType}/images/`)
-    .then((result) => {
-      return result.data;
-    });
-};
-
 module.exports = {
   dogPhotoService,
   dogPhotoServiceAllBreeds,
   dogPhotoServiceByBreedByQuantity,
-  dogPhotoServiceByBreedAll,
 };

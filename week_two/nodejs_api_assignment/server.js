@@ -3,7 +3,6 @@ const {
   dogPhotoService,
   dogPhotoServiceAllBreeds,
   dogPhotoServiceByBreedByQuantity,
-  dogPhotoServiceByBreedAll,
 } = require("./services/dogPhotoService");
 require("dotenv").config();
 
@@ -49,19 +48,6 @@ app.get("/:breedType/:imgQuantity", (req, res, next) => {
   const breedType = req.params.breedType;
   const imgQuantity = req.params.imgQuantity;
   dogPhotoServiceByBreedByQuantity(breedType, imgQuantity)
-    .then((result) => res.status(200).json(result))
-    .catch((err) =>
-      res
-        .status(501)
-        .json({ error: { message: err.message, status: err.status } })
-    );
-});
-
-// get external service by all random dog photos by specified breed type requested
-// http://localhost:3000/hound
-app.get("/:breedType", (req, res, next) => {
-  const breedType = req.params.breedType;
-  dogPhotoServiceByBreedAll(breedType)
     .then((result) => res.status(200).json(result))
     .catch((err) =>
       res
