@@ -9,42 +9,6 @@ require("dotenv").config();
 
 const app = express();
 
-// Below is what I did in the follow-along video with you, the Instructor
-// // for localhost:3000/
-// app.get("/", (req, res, next) => {
-//   res.status(200).send("Service is UP!");
-// });
-
-// // get external service
-// // http://localhost:3000/todo
-// app.get("/todo", (req, res, next) => {
-//   todoService()
-//     .then((result) => res.status(200).json(result))
-//     .catch((err) =>
-//       res
-//         .status(501)
-//         .json({ error: { message: err.message, status: err.status } })
-//     );
-// });
-
-// // get external service by ID
-// // http://localhost:3000/todo/56
-// app.get("/todo/:todoId", (req, res, next) => {
-//   const todoId = req.params.todoId;
-//   todoServiceById(todoId)
-//     .then((result) => res.status(200).json(result))
-//     .catch((err) =>
-//       res.status(err.status || 501).json({
-//         error: {
-//           message: err.message,
-//           status: err.status,
-//           method: req.method,
-//         },
-//       })
-//     );
-// });
-
-// Below is my newly created dog photo API
 // for localhost:3000/
 app.get("/", (req, res, next) => {
   res.status(200).send("Service is UP!");
