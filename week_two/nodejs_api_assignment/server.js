@@ -1,32 +1,59 @@
 const express = require("express");
+const {
+  dogPhotoService,
+  dogPhotoServiceAllBreeds,
+  dogPhotoServiceByBreedByQuantity,
+  dogPhotoServiceByBreedAll,
+} = require("./services/dogPhotoService");
 require("dotenv").config();
-
-const { todoService, todoServiceById } = require("./services/todoService");
 
 const app = express();
 
+// Below is what I did in the follow-along video with you, the Instructor
+// // for localhost:3000/
+// app.get("/", (req, res, next) => {
+//   res.status(200).send("Service is UP!");
+// });
+
+// // get external service
+// // http://localhost:3000/todo
+// app.get("/todo", (req, res, next) => {
+//   todoService()
+//     .then((result) => res.status(200).json(result))
+//     .catch((err) =>
+//       res
+//         .status(501)
+//         .json({ error: { message: err.message, status: err.status } })
+//     );
+// });
+
+// // get external service by ID
+// // http://localhost:3000/todo/56
+// app.get("/todo/:todoId", (req, res, next) => {
+//   const todoId = req.params.todoId;
+//   todoServiceById(todoId)
+//     .then((result) => res.status(200).json(result))
+//     .catch((err) =>
+//       res.status(err.status || 501).json({
+//         error: {
+//           message: err.message,
+//           status: err.status,
+//           method: req.method,
+//         },
+//       })
+//     );
+// });
+
+// Below is my newly created dog photo API
 // for localhost:3000/
 app.get("/", (req, res, next) => {
   res.status(200).send("Service is UP!");
 });
 
-// get external service
-// http://localhost:3000/todo
-app.get("/todo", (req, res, next) => {
-  todoService()
-    .then((result) => res.status(200).json(result))
-    .catch((err) =>
-      res
-        .status(501)
-        .json({ error: { message: err.message, status: err.status } })
-    );
-});
-
-// get external service by ID
-// http://localhost:3000/todo/56
-app.get("/todo/:todoId", (req, res, next) => {
-  const todoId = req.params.todoId;
-  todoServiceById(todoId)
+// get external service by listing all dog breeds data for reference in potential future requests
+// http://localhost:3000/all
+app.get("/all", (req, res, next) => {
+  dogPhotoServiceAllBreeds()
     .then((result) => res.status(200).json(result))
     .catch((err) =>
       res.status(err.status || 501).json({
@@ -36,6 +63,46 @@ app.get("/todo/:todoId", (req, res, next) => {
           method: req.method,
         },
       })
+    );
+});
+
+// get external service by quantity of wanted random dog photos
+// http://localhost:3000/3
+app.get("/:imgQuantity", (req, res, next) => {
+  const imgQuantity = req.params.imgQuantity;
+  dogPhotoService(imgQuantity)
+    .then((result) => res.status(200).json(result))
+    .catch((err) =>
+      res
+        .status(501)
+        .json({ error: { message: err.message, status: err.status } })
+    );
+});
+
+// get external service by quantity of wanted breed specified dog photos
+// http://localhost:3000/hound/3
+app.get("/:breedType/:imgQuantity", (req, res, next) => {
+  const breedType = req.params.breedType;
+  const imgQuantity = req.params.imgQuantity;
+  dogPhotoServiceByBreedByQuantity(breedType, imgQuantity)
+    .then((result) => res.status(200).json(result))
+    .catch((err) =>
+      res
+        .status(501)
+        .json({ error: { message: err.message, status: err.status } })
+    );
+});
+
+// get external service by all random dog photos by specified breed type requested
+// http://localhost:3000/hound
+app.get("/:breedType", (req, res, next) => {
+  const breedType = req.params.breedType;
+  dogPhotoServiceByBreedAll(breedType)
+    .then((result) => res.status(200).json(result))
+    .catch((err) =>
+      res
+        .status(501)
+        .json({ error: { message: err.message, status: err.status } })
     );
 });
 
