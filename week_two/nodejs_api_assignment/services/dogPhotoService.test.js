@@ -6,16 +6,17 @@ const {
 
 require("dotenv").config();
 
-// jest.mock("./dogPhotoService.js");
+jest.mock("./dogPhotoService.js");
 
-describe("Dog Photo Service Tests", () => {
+describe("Real Dog Photo Service Tests", () => {
   test("Should return random dog photos by specified quantity", async () => {
     const result = await dogPhotoService(5);
     expect(result.message).toHaveLength(5);
+    // Add test for file type
   });
 });
 
-describe("Dog Photo Service Tests", () => {
+describe("Real Dog Photo Service Tests", () => {
   test("Should return all dog breeds data", async () => {
     const result = await dogPhotoServiceAllBreeds();
     expect(result).toEqual({
@@ -161,9 +162,10 @@ describe("Dog Photo Service Tests", () => {
   });
 });
 
-describe("Dog Photo Service Tests", () => {
+describe("Real Dog Photo Service Tests", () => {
   test("Should return random dog photos by specified quantity", async () => {
     const result = await dogPhotoServiceByBreedByQuantity("hound",5);
     expect(result.message).toHaveLength(5);
+    // Add test for file type
   });
 });
