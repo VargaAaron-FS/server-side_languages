@@ -164,7 +164,7 @@ describe("Real Dog Photo Service Tests", () => {
 
 describe("Real Dog Photo Service Tests", () => {
   test("Should return random dog photos by specified quantity", async () => {
-    const result = await dogPhotoServiceByBreedByQuantity("hound",5);
+    const result = await dogPhotoServiceByBreedByQuantity("hound", 5);
     expect(result.message).toHaveLength(5);
     // Add test for file type
   });
